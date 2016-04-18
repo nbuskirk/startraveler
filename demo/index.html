@@ -1,0 +1,58 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+	<title>Star Traveler</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+	<style type="text/css">
+		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); 
+		cursor: url(assets/cursor.png) 0 0, auto;
+
+		}
+		input, textarea  { -webkit-user-select:text; }
+		body { background-color:black;  margin:0; padding:0; text-align:center}
+		#cr-stage { border:5px solid #222; margin:5% auto }
+
+	</style>
+	<script src='intelxdk.js'></script>
+    <script src="lib/crafty.js"></script>
+    <script src="lib/jquery-2.1.0.min.js"></script>
+    <script src="lib/TiledLevelImporter.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/components.js"></script>
+	<script src="src/objects.js"></script>
+	<script src="src/enemies.js"></script>
+    <script src="src/scenes.js"></script>
+	<script type="text/javascript">
+		var onDeviceReady=function(){
+			intel.xdk.device.hideSplashScreen();
+			intel.xdk.device.hideStatusBar();
+			intel.xdk.setRotateOrientation("landscape"); //lock our game to horizontal
+		};
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+	</script>
+    <script>
+        window.addEventListener('load', Game.start);
+		$(function(){ 
+			window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+			window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+			$(window).mouseup(function() {
+				if (typeof(Crafty('StageClicker').__refire) !== "undefined") {
+					clearInterval(Crafty('StageClicker').__refire); //release outside of canvas game
+				}
+			})
+		})
+		function get_random_color() {
+  function c() {
+    return Math.floor(Math.random()*256).toString(16)
+  }
+  return "#"+c()+c()+c();
+}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
